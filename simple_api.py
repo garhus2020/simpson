@@ -1,4 +1,5 @@
 from fastapi import FastAPI , File, UploadFile, Form
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
 from scipy import stats
@@ -86,13 +87,13 @@ def find_conf(df,x,y):
 
 app = FastAPI()
 
-class QueryString(BaseModel):
-    """
-    This class only contains one element, a string called "query".
-    This setup will set Pydantic to expect a dictionary of format:
-    {"query": "Some sort of string"}
-    """
-    query: str
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 
