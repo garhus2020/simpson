@@ -160,7 +160,7 @@ async def find_confounder(
 
     if (flag ==0):
         time.sleep(3)
-        return {'filename': data_file.filename,
+        return {
                 'confounding_variable': conf,
                 'reversed_params': prop
                 }
@@ -170,10 +170,14 @@ async def find_confounder(
     fixed_agg_data = aggregate_adj(data,x,y,conf)
     fixed_agg_data = json.loads(json.dumps(reverse_cat_num(data_copy,fixed_agg_data,x).to_dict(orient='records')))
     time.sleep(3)
-    return {'filename': data_file.filename,
+    return {
             'confounding_variable': conf,
-            'reversed_params' : prop,
-            'agg_data': agg_data,
-            'disagg_date': disagg_data,
-            'fixed_agg_data': fixed_agg_data
+            'reversed_params': prop
             }
+    # return {'filename': data_file.filename,
+    #         'confounding_variable': conf,
+    #         'reversed_params' : prop,
+    #         'agg_data': agg_data,
+    #         'disagg_date': disagg_data,
+    #         'fixed_agg_data': fixed_agg_data
+    #         }
