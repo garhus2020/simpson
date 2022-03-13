@@ -6,11 +6,11 @@ def flatten(t):
     return [item for sublist in t for item in sublist]
 
 def aggregate (df, x, y, conf):
-    new= df.groupby(x)[y].mean()
-    print(new)
-    new2= df.groupby([x,conf])[y].mean()
-    print(new2)
-
+    new= df.groupby(x)[y].mean().reset_index()
+    #print(new)
+    new2= df.groupby([x,conf])[y].mean().reset_index()
+    #print(new2)
+    return new,new2
 
 
 
@@ -32,8 +32,8 @@ def aggregate_adj (df, x, y, conf):
     for index, row in nom.iterrows():
         val= nom.loc[index][y]/denom.loc[index]['adj']
         nom.at[index,y]=val
-    print(nom)
-
+    #print(nom)
+    return nom
 
 
 

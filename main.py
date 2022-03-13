@@ -119,9 +119,10 @@ def main():
 
     # print(data.head())
     conf = find_conf(data,x,y)
+
     # print(data.tail())
-    aggregate(data,x,y,conf)
-    aggregate_adj(data,x,y,conf)
+    #aggregate(data,x,y,conf)
+    #aggregate_adj(data,x,y,conf)
 
 
 # Press the green button in the gutter to run the script.
