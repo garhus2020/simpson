@@ -164,9 +164,9 @@ async def find_confounder(
                 }
 
     agg_data, disagg_data = aggregate(data,x,y,conf)
-    agg_data, disagg_data = json.loads(json.dumps(reverse_cat_num(data_copy,agg_data,x).to_dict(orient='list'))), json.loads(json.dumps(reverse_cat_num(data_copy,disagg_data,x).to_dict(orient='list')))
+    agg_data, disagg_data = json.loads(json.dumps(reverse_cat_num(data_copy,agg_data,x).to_dict(orient='records'))), json.loads(json.dumps(reverse_cat_num(data_copy,disagg_data,x).to_dict(orient='records')))
     fixed_agg_data = aggregate_adj(data,x,y,conf)
-    fixed_agg_data = json.loads(json.dumps(reverse_cat_num(data_copy,fixed_agg_data,x).to_dict(orient='list')))
+    fixed_agg_data = json.loads(json.dumps(reverse_cat_num(data_copy,fixed_agg_data,x).to_dict(orient='records')))
 
     return {'filename': data_file.filename,
             'confounding_variable': conf,
