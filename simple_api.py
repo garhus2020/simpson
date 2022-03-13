@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import pandas as pd
 from scipy import stats
 from fix import adjust, adjustN, aggregate, aggregate_adj
+import json
 
 def bool_to_str(pandasDF):
     booleandf = pandasDF.select_dtypes(include=[bool])
@@ -162,9 +163,9 @@ async def find_confounder(
                 }
 
     agg_data, disagg_data = aggregate(data,x,y,conf)
-    agg_data, disagg_data = reverse_cat_num(data_copy,agg_data,x).to_json(orient='index'), reverse_cat_num(data_copy,disagg_data,x).to_json(orient='index')
+    agg_data, disagg_data = json.loads(json.dumps(reverse_cat_num(data_copy,agg_data,x).to_json(orient='index'))), json.loads(json.dumps(reverse_cat_num(data_copy,disagg_data,x).to_json(orient='index')))
     fixed_agg_data = aggregate_adj(data,x,y,conf)
-    fixed_agg_data = reverse_cat_num(data_copy,fixed_agg_data,x).to_json(orient='index')
+    fixed_agg_data = json.loads(json.dumps(reverse_cat_num(data_copy,fixed_agg_data,x).to_json(orient='index')))
 
     return {'filename': data_file.filename,
             'confounding_variable': conf,
