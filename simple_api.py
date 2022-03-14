@@ -165,9 +165,9 @@ async def find_confounder(
                 }
 
     agg_data, disagg_data = aggregate(data,x,y,conf)
-    agg_data, disagg_data = ((reverse_cat_num(data_copy,agg_data,x).to_json(orient='table'))), ((reverse_cat_num(data_copy,disagg_data,x).to_json(orient='table')))
+    agg_data, disagg_data = ((reverse_cat_num(data_copy,agg_data,x).to_json(orient='index'))), ((reverse_cat_num(data_copy,disagg_data,x).to_json(orient='index')))
     fixed_agg_data = aggregate_adj(data,x,y,conf)
-    fixed_agg_data = ((reverse_cat_num(data_copy,fixed_agg_data,x).to_json(orient='table')))
+    fixed_agg_data = ((reverse_cat_num(data_copy,fixed_agg_data,x).to_json(orient='index')))
 
     return {
             'confounding_variable': conf,
