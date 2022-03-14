@@ -159,20 +159,20 @@ async def find_confounder(
     #js = data.to_json(orient='index')
 
     if (flag ==0):
-        return {
+        return json.dumps({
                 'confounding_variable': conf,
                 'reversed_params': prop
-                }
+                })
 
     agg_data, disagg_data = aggregate(data,x,y,conf)
     agg_data, disagg_data = ((reverse_cat_num(data_copy,agg_data,x).to_json(orient='records'))), ((reverse_cat_num(data_copy,disagg_data,x).to_json(orient='records')))
     fixed_agg_data = aggregate_adj(data,x,y,conf)
     fixed_agg_data = ((reverse_cat_num(data_copy,fixed_agg_data,x).to_json(orient='records')))
 
-    return {
+    return json.dumps({
             'confounding_variable': conf,
             'reversed_params' : prop,
             # 'agg_data': agg_data,
             # 'disagg_date': disagg_data,
             'fixed_agg_data': fixed_agg_data
-            }
+            })
